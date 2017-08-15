@@ -1,4 +1,3 @@
-
 const express = require('express');
 const mustacheExpress = require('mustache-express');
 const bodyParser = require('body-parser');
@@ -27,11 +26,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 //configure the expressValidator
 app.use(expressValidator());
 
-let toDoList = [];
-let newtoDoList = [];
+let todoList = []
 
 app.get('/', function(request, response){
-  response.render('todos', {todo: newtoDoList});
+  response.render('todos', {todos: todoList});
 });
 
 // const todos = [
@@ -43,39 +41,24 @@ app.get('/', function(request, response){
 // });
 //req.body is the name of  all the input entered according to node
 app.post("/", function (req, res) {
+  let id = parseInt(Math.random()*1000);
+  newtodoList = {name: req.body.todo, id:id}
+  todoList.push(newtodoList);
 
-  let name = req.body.todo;
-  toDoList.push(name);
-  let todoid = toDoList.indexOf(name)
-  let  id= todoid+1;
-
-  list = {name: req.body.todo, id:id, complete:id}
-  newtoDoList.push(list);
-  console.log(newtoDoList)
-
+console.log(req.body);
+  todoList.push(req.body.todo);
+  //todo refers to the name value  of input in the template todo.mustache
   res.redirect('/');
 });
 
-app.post('/:id', function (req, res) {
+app.post('/mark-complete/:id', function (req, res) {
   let completedId= parseInt(req.params.id);
-  let completedTodo = newtoDoList.find(function(todo){
-    if( todo.id === completedId){
-      return todo.id;
-      console.log(todo.id)
-    }
-
+  let completedTodo = todoList.find(function(todo){
+    return todo.id === completedId
   });
-  if (completedId===completedTodo.id){
-      completedTodo.complete=""
-  }
-  // completedTodo.complete = 2;
-console.log(completedTodo)
-console.log(completedTodo.id)
-  // console.log();
-  // console.log(completedTodo.complete);
+  completedTodo.complete =true;
   res.redirect('/');
 
-    // console.log(completedTodo);
 });
 
 // app.post('/',function(request, response){
