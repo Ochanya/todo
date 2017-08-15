@@ -1,0 +1,45 @@
+body{
+  font-family: monospace;
+  margin: 0 auto;
+
+}
+h1{
+  font-size: 40px;
+  align-self: center;
+}
+
+input{
+  font-size: large;
+  /*width: 50%*/
+  padding: 20px;
+
+
+}
+button{
+  font-size: large;
+  /*width: 40%;*/
+  padding: 20px;
+
+}
+
+.container{
+  width: 60%;
+  margin: 0 auto;
+  color: grey;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+li{
+  font-size: xx-large;
+  display: flex;
+}
+span{
+  padding :15px;
+}
+.completebtn{
+  padding: 10px
+}

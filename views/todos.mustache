@@ -2,35 +2,33 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
     <title>todo</title>
   </head>
   <body>
-    <h1>To do</h1>
-
-      <form action="/" method="post">
-      <div>
-        <input type="text" name="todo" placeholder="Enter To Do" />
-        <button type="submit">Add to list</button>
-      </div>
-    </form>
-    <ul>
-      {{#todo}}
-       <li>
-         {{#complete}}
-            {{name}}
+    <div class="container">
+      <h1>TO DO LIST</h1>
+        <div class="input-style">
+          <form action="/" method="post">
+            <input type="text" name="todo" placeholder="Enter To Do" />
+            <button type="submit">Add to list</button>
+          </form>
+        </div>
+      <ul>
+        {{#todo}}
+         <li>
+           {{#complete}}
+            <span>{{id}}.</span><span> {{name}}</span>
            {{/complete}}
-         {{^complete}}
-           <del> {{name}} </del>
+           {{^complete}}
+             <del> <span>{{id}}.</span><span>{{name}} </span></del>
            {{/complete}}
-
-          <!-- {{#complete}} <del> {{/complete}}
-            {{name}}
-          {{#complete}} </del> {{/complete}} -->
-         <form action="/{{id}}" method="post">
-          <button type="submit" name="button" value="{{id}}">Completed</button>
-         </form>
-       </li>
-       {{/todo}}
-    </ul>
+           <span><form action="/{{id}}" method="post">
+            <button class="completebtn" type="submit" name="button" value="{{id}}">Completed</button>
+          </form></span>
+         </li>
+         {{/todo}}
+      </ul>
+    </div>
   </body>
 </html>
